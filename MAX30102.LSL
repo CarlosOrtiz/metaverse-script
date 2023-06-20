@@ -1,22 +1,15 @@
 integer minRange = 55;
 integer maxRange = 80;
 
-// Evento que se activa cuando se toca el cubo
 default
 {
     touch_start(integer total_number)
     {
-        // Generar un número aleatorio en el rango especificado
         integer randomNumber = llFloor(llFrand(maxRange - minRange + 1) + minRange);
-        
-        // Mostrar el número generado en la consola del script
-        llOwnerSay("Número generado: " + (string)randomNumber);
-
         string sensorValue = (string)randomNumber;
+
         string url = "http://45.71.181.109:3001/api/sensors/update?id_team=20&id_sensor=22&value_data=" + sensorValue;
-        list headers = [];
-        
-        llHTTPRequest(url, headers, "");
+        llHTTPRequest(url, [], "");
     }
 
     http_response(key request_id, integer status, list metadata, string body)
