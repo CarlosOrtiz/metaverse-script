@@ -2,6 +2,11 @@ default
 {
     touch_start(integer total_number)
     {
+        llSetTimerEvent(2.0);
+    }
+
+    timer()
+    {
         string url = "http://45.71.181.109:3001/api/sensors?id_team=20&id_sensor=22";
         list headers = [];
         llHTTPRequest(url, headers, "");
@@ -21,8 +26,8 @@ default
         }
         else
         {
-            llOwnerSay("Error GET : " + (string)status);
-            llSetText("Error GET : " + status, <1.0, 1.0, 1.0>, 1.0);
+            llOwnerSay("Error GET: " + (string)status);
+            llSetText("Error GET: " + (string)status, <1.0, 1.0, 1.0>, 1.0);
         }
     }
 }
